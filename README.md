@@ -9,6 +9,21 @@
 ![image](https://github.com/user-attachments/assets/6813f493-00bd-444d-b6db-5990addd730b)
 ![image](https://github.com/user-attachments/assets/e502f809-dc2f-4973-af81-de81aba5545c)
 
+## ✨ What's new in v1.0.2
+
+- **Graphical redesign:** Complete UI overhaul for a more modern and consistent look.
+- **User-Agent spoofer finished:** User-Agent spoofing is now fully functional and configurable.
+- **Global settings:** All features except videos are now global (apply to all domains, not just the current one).
+
+---
+
+## ✨ What's new in v1.0.1
+
+- **User-Agent spoofer:** Added the ability to spoof the User-Agent for all outgoing requests.
+- **Geolocation:** Geolocation spoofing UI is present, but the geolocation is not actually instantiated (only the virtual camera is active).
+
+---
+
 ## ✨ What's new in v1.0.0
 
 - **Modern UI:** Responsive popup interface with video drag & drop, animated status, toast notifications.
@@ -29,9 +44,10 @@
 
 - **Virtual camera:** Replace your webcam with any video on supported sites.
 - **Popup controls:** Play, pause, seek, and manage video directly from the extension.
-- **Per-domain activation:** The extension only applies to the current domain for privacy.
-- **Custom geolocation:** Spoof your GPS position for the current site.
-- **Configurable proxy:** Apply a local proxy for the current domain (HTTP/HTTPS/SOCKS5). **Warning: Applies to all domains!**
+- **Per-domain video activation:** Only videos are per-domain; all other spoofers are now global.
+- **Custom geolocation:** Spoof your GPS position for all sites.
+- **Configurable proxy:** Apply a local proxy globally (HTTP/HTTPS/SOCKS5).
+- **User-Agent spoofer:** Change your browser's User-Agent globally.
 - **No external servers:** Everything is processed and stored locally in your browser.
 
 ---
