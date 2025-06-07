@@ -1,0 +1,565 @@
+.header,
+.status-indicator {
+    background: rgba(255, 255, 255, .1)
+}
+
+.header,
+.video-section {
+    backdrop-filter: blur(20px)
+}
+
+* {
+    box-sizing: border-box
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #667eea 0, #764ba2 100%);
+    color: #1a1a1a;
+    overflow-x: hidden
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e293b 0, #334155 100%)
+}
+
+.header,
+.logo {
+    align-items: center;
+    display: flex
+}
+
+.header {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    padding: 16px 24px;
+    justify-content: space-between
+}
+
+.logo {
+    gap: 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2em
+}
+
+.logo::before {
+    content: "🦊";
+    font-size: 1.5em
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: .9em;
+    font-weight: 500
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: 2s infinite pulse
+}
+
+.status-dot.active {
+    background: #10b981
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: .5
+    }
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px
+}
+
+.video-section {
+    background: rgba(255, 255, 255, .95);
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .05)
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .15)
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(102, 126, 234, .8), rgba(118, 75, 162, .8));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 1;
+    transition: opacity .3s
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none
+}
+
+.video-placeholder {
+    font-size: 4em;
+    margin-bottom: 16px;
+    opacity: .7
+}
+
+.video-placeholder-text {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 8px
+}
+
+.video-placeholder-hint {
+    font-size: .9em;
+    opacity: .8
+}
+
+.controls-section,
+.settings-section {
+    background: rgba(255, 255, 255, .95);
+    backdrop-filter: blur(20px);
+    padding: 24px 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .1)
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px
+}
+
+.control-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 16px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s cubic-bezier(.4, 0, .2, 1);
+    background: linear-gradient(135deg, #667eea 0, #764ba2 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, .3)
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, .4)
+}
+
+.control-button:active {
+    transform: translateY(-1px)
+}
+
+.control-button.active {
+    background: linear-gradient(135deg, #ef4444 0, #dc2626 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, .3)
+}
+
+.control-button.secondary {
+    background: linear-gradient(135deg, #6b7280 0, #4b5563 100%);
+    box-shadow: 0 4px 12px rgba(107, 114, 128, .3)
+}
+
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%
+}
+
+.file-input {
+    position: absolute;
+    left: -9999px;
+    opacity: 0
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .05)
+}
+
+.setting-row:last-child,
+.tabs {
+    border-bottom: none
+}
+
+.setting-label {
+    font-weight: 500;
+    color: #374151
+}
+
+#geo-status,
+.tab-btn {
+    font-size: 1em;
+    font-weight: 600
+}
+
+.toggle-switch {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: #d1d5db;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background .2s
+}
+
+.toggle-switch.active {
+    background: #667eea
+}
+
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1)
+}
+
+.toggle-switch.active::after {
+    transform: translateX(24px)
+}
+
+.tab-content,
+body,
+html,
+main {
+    scrollbar-width: none;
+    -ms-overflow-style: none
+}
+
+.tab-content::-webkit-scrollbar,
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+main::-webkit-scrollbar {
+    display: none
+}
+
+/* #tab-geolocation form, */
+.controls-section,
+.settings-section,
+.video-section {
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, .1), 0 1px 3px rgba(118, 75, 162, .08)
+}
+
+.tab-btn,
+.tab-btn.active {
+    box-shadow: none
+}
+
+#tab-geolocation label {
+    font-weight: 500;
+    color: #e5e7eb
+}
+
+#tab-geolocation input[type=number] {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 1em;
+    transition: border .2s, background .2s;
+    margin-top: 4px;
+    margin-bottom: 0;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, .04)
+}
+
+#tab-geolocation input[type=checkbox] {
+    accent-color: #667eea;
+    margin-right: 8px;
+    transform: scale(1.2)
+}
+
+#tab-geolocation .control-button.secondary {
+    background: linear-gradient(135deg, #6b7280 0, #4b5563 100%);
+    color: #fff;
+    border-radius: 16px;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 16px 24px;
+    margin-top: 12px;
+    box-shadow: 0 4px 12px rgba(107, 114, 128, .18);
+    border: none;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s
+}
+
+#tab-geolocation .control-button.secondary:hover {
+    background: linear-gradient(135deg, #4b5563 0, #6b7280 100%);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, .12)
+}
+
+#geo-status {
+    margin-top: 14px;
+    min-height: 1.2em;
+    letter-spacing: .01em;
+    transition: color .2s;
+    color: #a5b4fc
+}
+
+.tabs {
+    display: flex;
+    gap: 0;
+    margin: 0 0 24px;
+    background: 0 0;
+    position: relative;
+    z-index: 2
+}
+
+.tab-btn,
+.tab-btn.active,
+.tab-btn:not(.active):hover {
+    background: #1e293b
+}
+
+.tab-btn,
+.tab-content {
+    z-index: 1;
+    position: relative
+}
+
+.tab-btn {
+    border: none;
+    border-radius: 18px 18px 0 0;
+    padding: 14px 32px 12px;
+    margin-right: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    transition: background .18s, color .18s, box-shadow .18s;
+    outline: 0;
+    top: 0
+}
+
+.tab-content {
+    border-radius: 0 0 24px 24px;
+    margin-top: 0;
+    /* box-shadow: 0 20px 40px rgba(102, 126, 234, .1), 0 1px 3px rgba(118, 75, 162, .08); */
+    padding-bottom: 24px;
+    /* background: linear-gradient(135deg, #23293a 0, #374151 100%); */
+    color: #e5e7eb
+}
+
+/* #tab-geolocation form, */
+.controls-section,
+.settings-section,
+.video-section {
+    background: linear-gradient(135deg, #23293a 0, #374151 100%);
+    color: #e5e7eb;
+    border: 1px solid #374151
+}
+
+#tab-geolocation input[type=number] {
+    background: #23293a;
+    color: #e5e7eb;
+    border: 1px solid #667eea
+}
+
+#tab-geolocation input[type=number]:focus {
+    outline: 0;
+    background: #374151;
+    border: 1.5px solid #a5b4fc
+}
+
+.tab-btn {
+    color: #a5b4fc
+}
+
+.tab-btn.active,
+.tab-btn:not(.active):hover {
+    color: #fff
+}
+
+nav {
+    background: #1e293b !important
+}
+
+/* --- Proxy Section --- */
+.proxy-section {
+    background: linear-gradient(135deg, #23293a 0, #374151 100%);
+    color: #e5e7eb;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, .1), 0 1px 3px rgba(118, 75, 162, .08);
+    border: 1px solid #374151;
+    padding: 32px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#proxy-form label {
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+#proxy-form input[type="text"],
+#proxy-form input[type="number"],
+#proxy-form select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 1em;
+    background: #23293a;
+    color: #e5e7eb;
+    border: 1px solid #667eea;
+    margin-top: 4px;
+    margin-bottom: 0;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, .04);
+    transition: border .2s, background .2s;
+}
+
+#proxy-form input[type="text"]:focus,
+#proxy-form input[type="number"]:focus,
+#proxy-form select:focus {
+    outline: 0;
+    background: #374151;
+    border: 1.5px solid #a5b4fc;
+}
+
+#proxy-form input[type="checkbox"] {
+    accent-color: #667eea;
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+#proxy-status {
+    margin-top: 14px;
+    min-height: 1.2em;
+    letter-spacing: .01em;
+    transition: color .2s;
+    color: #a5b4fc;
+}
+
+#proxy-clear-btn {
+    margin-top: 16px;
+    width: 100%;
+}
+
+/* Harmonise tous les blocs d'onglet */
+/* .tab-content > section, */
+/* .tab-content > div, */
+.geo-section 
+{
+    background: linear-gradient(135deg, #23293a 0, #374151 100%);
+    color: #e5e7eb;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, .1), 0 1px 3px rgba(118, 75, 162, .08);
+    border: 1px solid #374151;
+    padding: 32px;
+    margin-bottom: 24px;
+}
+
+/* #tab-virtual-camera {
+    display: flex;
+    flex-direction: row;
+} */
+
+/* Pour éviter le double fond sur .proxy-section ou .video-section, tu peux les cibler plus précisément si besoin */
+
+/* Multi-status indicator styles */
+.status-indicator-multi {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 8px 0;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.98em;
+    font-weight: 500;
+    color: #e5e7eb;
+    background: rgba(30, 41, 59, 0.18);
+    border-radius: 18px;
+    padding: 4px 14px 4px 10px;
+    min-width: 120px;
+    transition: background 0.2s;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ef4444; /* Off = rouge */
+    margin-right: 4px;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.15);
+    transition: background 0.2s;
+    animation: 2s infinite pulse;
+}
+
+.status-dot.active {
+    background: #10b981; /* On = vert */
+    box-shadow: 0 0 8px #10b98155;
+}
+
+@media (max-width: 600px) {
+    .status-indicator-multi {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    .status-item {
+        min-width: 0;
+        font-size: 0.95em;
+        padding: 4px 10px;
+    }
+}

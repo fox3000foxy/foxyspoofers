@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "FoxySpoofers",
+  "version": "1.0",
+  "description": "A modern Chrome extension to create a virtual camera, spoof geolocation, and manage a local proxy directly in your browser.",
+  "permissions": [
+    "proxy",
+    "storage",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    },
+    {
+      "matches": ["*://*/virtual-camera-interface"],
+      "js": ["popup.js"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/virtual.mp4",
+        "inject-gum.js",
+        "inject-geo.js",
+        "popup/popup.html",
+        "popup/popup.js",
+        "popup/popup.css"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
