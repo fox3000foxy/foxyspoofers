@@ -1,61 +1,49 @@
 # 🦊 FoxySpoofers
 
-> **A modern Chrome extension to create a virtual camera, spoof geolocation, and manage a local proxy directly in your browser.**
+**A modern Chrome extension to create a virtual camera, spoof geolocation, manage a local proxy, and change your User-Agent directly in your browser.**
 
 ---
 
-![image](https://github.com/user-attachments/assets/a3881a33-785d-4062-9e31-90b15974f96c)
-![image](https://github.com/user-attachments/assets/896feafb-323e-4e6f-9807-b8f1327a099b)
-![image](https://github.com/user-attachments/assets/6813f493-00bd-444d-b6db-5990addd730b)
-![image](https://github.com/user-attachments/assets/e502f809-dc2f-4973-af81-de81aba5545c)
+## 🚨 What's New
 
-## ✨ What's new in v1.0.2
+### v1.0.2
+- Complete UI redesign for a modern, consistent look.
+- User-Agent spoofing is now fully functional and configurable.
+- All features except video spoofing are now global (apply to all domains).
+- Extension loads before page scripts, preventing 404 errors on some sites.
 
-- **Graphical redesign:** Complete UI overhaul for a more modern and consistent look.
-- **User-Agent spoofer finished:** User-Agent spoofing is now fully functional and configurable.
-- **Global settings:** All features except videos are now global (apply to all domains, not just the current one).
-- **No more 404 page:** Thanks to using `document_start` in the manifest, the extension now loads before page scripts, preventing 404 errors on some sites.
+### v1.0.1
+- Added User-Agent spoofing for all outgoing requests.
+- Geolocation spoofing UI available (functionality coming soon).
 
----
-
-## ✨ What's new in v1.0.1
-
-- **User-Agent spoofer:** Added the ability to spoof the User-Agent for all outgoing requests.
-- **Geolocation:** Geolocation spoofing UI is present, but the geolocation is not actually instantiated (only the virtual camera is active).
-
----
-
-## ✨ What's new in v1.0.0
-
-- **Modern UI:** Responsive popup interface with video drag & drop, animated status, toast notifications.
-- **Persistent video state:** Resume playback where you left off, even after restart.
-- **IndexedDB storage:** Videos and settings stored locally for speed and privacy.
-- **BroadcastChannel sync:** Controls and video state synchronized in real time across all tabs.
-- **One-click enable/disable:** Instantly turn the virtual camera on or off.
-- **Drag & Drop support:** Easily load a video by drag-and-drop.
-- **Data wipe:** One button to clear everything (videos, settings, geolocation, proxy).
-- **Improved notifications:** Clear messages for every action or error.
-- **Settings (coming soon):** Loop, autoplay, mute (UI already ready).
-- **Geolocation spoofing:** Choose a latitude/longitude and enable simulated geolocation.
-- **Local proxy:** Set an HTTP/HTTPS/SOCKS5 proxy for the current domain, stored locally.
+### v1.0.0
+- Initial release with:
+  - Responsive popup interface
+  - Virtual camera with drag & drop video support
+  - Persistent video state and IndexedDB storage
+  - Real-time sync across tabs
+  - One-click enable/disable
+  - Data wipe button
+  - Toast notifications
+  - Geolocation and proxy spoofing UI
 
 ---
 
 ## 🚀 Features
 
-- **Virtual camera:** Replace your webcam with any video on supported sites.
-- **Popup controls:** Play, pause, seek, and manage video directly from the extension.
-- **Per-domain video activation:** Only videos are per-domain; all other spoofers are now global.
-- **Custom geolocation:** Spoof your GPS position for all sites.
-- **Configurable proxy:** Apply a local proxy globally (HTTP/HTTPS/SOCKS5).
-- **User-Agent spoofer:** Change your browser's User-Agent globally.
-- **No external servers:** Everything is processed and stored locally in your browser.
+- **Virtual Camera:** Replace your webcam with any video on supported sites.
+- **Popup Controls:** Play, pause, seek, and manage video directly from the extension.
+- **Per-Domain Video Activation:** Only videos are per-domain; all other spoofers are global.
+- **Custom Geolocation:** Spoof your GPS position for all sites.
+- **Configurable Proxy:** Apply a local HTTP/HTTPS/SOCKS5 proxy globally.
+- **User-Agent Spoofer:** Change your browser's User-Agent globally.
+- **No External Servers:** All processing and storage is local to your browser.
 
 ---
 
 ## 🛠️ Installation
 
-1. **Download** or clone this repository.
+1. Download or clone this repository.
 2. Open Chrome and go to `chrome://extensions/`.
 3. Enable **Developer mode** (top right).
 4. Click **Load unpacked** and select the extension folder.
@@ -66,7 +54,7 @@
 ## 🎬 Usage
 
 1. Click the extension icon to open the popup.
-2. **Load a video** (drag-and-drop or use the button).
+2. Load a video (drag-and-drop or use the button).
 3. Click **Enable camera** to activate the virtual camera.
 4. Use the video controls to play, pause, or seek.
 5. The extension will remember your position and settings.
@@ -89,11 +77,12 @@ This project is licensed under the MIT License.
 ## 💡 Notes
 
 - Works best on sites that use `getUserMedia` for webcam access.
-- All video data stays on your device.
+- All video and settings data stays on your device.
 - For feedback or issues, open an issue on GitHub.
 
 ---
 
-## 🦋 Known bugs
+## 🦋 Known Issues
 
-- Click directly on the video to pause it; do not use the pause button on the seek bar, as it will not correctly pause the mirrored stream.
+- To pause the video, click directly on the video. The pause button on the seek bar may not correctly pause the mirrored stream.
+- You may click to pause and then click to unpause to make the sync function availiable in background
