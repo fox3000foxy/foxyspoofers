@@ -49,10 +49,10 @@ body {
     font-size: 1.2em
 }
 
-.logo::before {
+/* .logo::before {
     content: "🦊";
     font-size: 1.5em
-}
+} */
 
 .status-indicator {
     display: flex;
@@ -533,6 +533,8 @@ nav {
     padding: 4px 14px 4px 10px;
     min-width: 120px;
     transition: background 0.2s;
+    min-width: 175px;
+    justify-content: center;
 }
 
 .status-dot {
@@ -558,8 +560,64 @@ nav {
         align-items: flex-start;
     }
     .status-item {
-        min-width: 0;
+        /* min-width: 0; */
         font-size: 0.95em;
         padding: 4px 10px;
+        min-width: 175px;
+        justify-content: center;
     }
 }
+
+/* ...existing code... */
+
+/* --- User-Agent Section --- */
+.useragent-section {
+    background: linear-gradient(135deg, #23293a 0, #374151 100%);
+    color: #e5e7eb;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, .1), 0 1px 3px rgba(118, 75, 162, .08);
+    border: 1px solid #374151;
+    padding: 32px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#ua-form label {
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+#ua-form input[type="text"] {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 1em;
+    background: #23293a;
+    color: #e5e7eb;
+    border: 1px solid #667eea;
+    margin-top: 4px;
+    margin-bottom: 0;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, .04);
+    transition: border .2s, background .2s;
+}
+
+#ua-form input[type="text"]:focus {
+    outline: 0;
+    background: #374151;
+    border: 1.5px solid #a5b4fc;
+}
+
+#ua-status {
+    margin-top: 14px;
+    min-height: 1.2em;
+    letter-spacing: .01em;
+    transition: color .2s;
+    color: #a5b4fc;
+}
+
+#ua-clear-btn {
+    margin-top: 16px;
+    width: 100%;
+}
+
+/* ...existing code... */

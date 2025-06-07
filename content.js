@@ -1,10 +1,52 @@
-const scriptGum = document.createElement('script');
-scriptGum.src = chrome.runtime.getURL('inject-gum.js');
-(document.head || document.documentElement).appendChild(scriptGum);
+class ScriptInjector {
+    static name = 'ScriptInjector';
+    static inject() {
+        this.injectScript('scripts/virtual-camera');
+        this.injectScript('scripts/geo');
+    }
+    static injectScript(file) {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = chrome.runtime.getURL(file + '/main.js');
+        (document.head || document.documentElement).appendChild(script);
+    }
+}
 
-const scriptGeo = document.createElement('script');
-scriptGeo.src = chrome.runtime.getURL('inject-geo.js');
-(document.head || document.documentElement).appendChild(scriptGeo);
+class GeoMetaManager {
+    static name = 'GeoMetaManager';
+    static inject() {
+        const metaGeo = document.createElement('meta');
+        metaGeo.name = 'geo.position';
+        chrome.storage.local.get('geoSpoof', (data) => {
+            const coords = JSON.stringify(data.geoSpoof) || '48.858844;2.294351';
+            metaGeo.content = coords;
+            document.head.appendChild(metaGeo);
+        });
+    }
+}
 
-console.log('Virtual Camera content script injected');
-console.log('Virtual Camera Geo Spoofing content script injected');
+class UserAgentManager {
+    static name = 'UserAgentManager';
+    static inject() {
+        chrome.storage.local.get(['uaSettings'], (data) => {
+            const ua = data.uaSettings?.ua;
+            if (!ua) return;
+            try {
+                Object.defineProperty(navigator, 'userAgent', {
+                    get: () => ua,
+                    configurable: true
+                });
+                window.navigator.__defineGetter__('userAgent', function() {
+                    return ua;
+                });
+            } catch (e) {
+                console.log('%c[Warning]%c [VirtualCamera] Impossible de redéfinir navigator.userAgent:', 'color:orange;font-weight:bold', '', e);
+            }
+        });
+    }
+}
+
+// Injection centralisée
+ScriptInjector.inject();
+GeoMetaManager.inject();
+UserAgentManager.inject();
