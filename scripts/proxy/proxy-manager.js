@@ -1,4 +1,4 @@
-class ProxyManager {
+export class ProxyManager {
     static apply(settings) {
         if (settings && settings.enabled) {
             const config = {

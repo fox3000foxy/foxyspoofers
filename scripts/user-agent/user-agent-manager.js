@@ -1,4 +1,4 @@
-class UserAgentManager {
+export class UserAgentManager {
     static apply(settings) {
         if (settings && settings.enabled && settings.ua) {
             let secChUa, secChUaMobile, secChUaPlatform;
