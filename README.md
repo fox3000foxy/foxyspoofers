@@ -4,6 +4,11 @@
 
 ---
 
+![image](https://github.com/user-attachments/assets/a3881a33-785d-4062-9e31-90b15974f96c)
+![image](https://github.com/user-attachments/assets/896feafb-323e-4e6f-9807-b8f1327a099b)
+![image](https://github.com/user-attachments/assets/6813f493-00bd-444d-b6db-5990addd730b)
+![image](https://github.com/user-attachments/assets/e502f809-dc2f-4973-af81-de81aba5545c)
+
 ## ✨ What's new in v1.0.0
 
 - **Modern UI:** Responsive popup interface with video drag & drop, animated status, toast notifications.
