@@ -14,6 +14,7 @@
 - **Graphical redesign:** Complete UI overhaul for a more modern and consistent look.
 - **User-Agent spoofer finished:** User-Agent spoofing is now fully functional and configurable.
 - **Global settings:** All features except videos are now global (apply to all domains, not just the current one).
+- **No more 404 page:** Thanks to using `document_start` in the manifest, the extension now loads before page scripts, preventing 404 errors on some sites.
 
 ---
 
