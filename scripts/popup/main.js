@@ -5,8 +5,9 @@ fetch(chrome.runtime.getURL('popup/popup.css'))
     fetch(chrome.runtime.getURL('popup/popup.html'))
     .then(response => response.text())
     .then(html => {
-        document.documentElement.innerHTML = html.replace('{domain}', window.location.hostname);
-        document.documentElement.innerHTML = html.replaceAll('{extensionPath}', chrome.runtime.getURL('background.js').split('/').slice(0, -1).join('/'));
+        let processedHtml = html.replace('{domain}', window.location.hostname);
+        processedHtml = processedHtml.replaceAll('{extensionPath}', chrome.runtime.getURL('background.js').split('/').slice(0, -1).join('/'));
+        document.documentElement.innerHTML = processedHtml;
         
         const style = document.createElement('style');
         style.textContent = css;
