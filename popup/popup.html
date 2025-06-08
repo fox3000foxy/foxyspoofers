@@ -7,9 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="{extensionPath}/scripts/leaflet/leaflet.css" />
-    <!-- Geocoder CSS -->
     <link rel="stylesheet" href="{extensionPath}/scripts/leaflet/Control.Geocoder.css" />
 </head>
 <body style="zoom: 0.8; font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #1e293b; color: #e2e8f0;">
@@ -39,10 +37,6 @@
             <div class="status-item">
                 <div class="status-dot" id="status-dot-browser"></div>
                 <span id="status-text-browser">Browser</span>
-            </div>
-            <div class="status-item" style="display: none;">
-                <div class="status-dot" id="status-dot-advanced"></div>
-                <span id="status-text-advanced">Advanced</span>
             </div>
         </div>
     </header>
@@ -225,115 +219,6 @@
                 </form>
                 <div id="browser-status" style="margin-top:16px;min-height:1.2em;color:#a5b4fc"></div>
                 <button id="browser-clear-btn" class="control-button" style="margin-top:16px;width:100%;">Reset</button>
-            </div>
-        </section>
-
-        <!-- Advanced Tab -->
-        <section class="tab-content-in-dev" id="tab-advanced" style="display:none;">
-            <div class="useragent-section" style="padding:32px;margin:0 auto;">
-                <h2>Advanced spoofers</h2>
-                <form id="advanced-form" style="margin-top:24px;">
-                    <label>WebGL Vendor<br>
-                        <input type="text" id="webgl-vendor" placeholder="Intel Inc." style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>WebGL Renderer<br>
-                        <input type="text" id="webgl-renderer" placeholder="Intel Iris Xe" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>AudioContext fingerprint<br>
-                        <input type="text" id="audio-fp" placeholder="custom value" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Battery API (level %)<br>
-                        <input type="number" id="battery-level" min="0" max="100" placeholder="100" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>maxTouchPoints<br>
-                        <input type="number" id="max-touch" placeholder="0" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Pointer type<br>
-                        <input type="text" id="pointer-type" placeholder="mouse" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>SpeechSynthesis voices<br>
-                        <input type="text" id="speech-voices" placeholder="en-US, fr-FR" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>SpeechRecognition language<br>
-                        <input type="text" id="speech-lang" placeholder="en-US" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Clipboard spoof<br>
-                        <input type="text" id="clipboard-content" placeholder="Paste text" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Performance.now() offset<br>
-                        <input type="number" id="perf-offset" placeholder="e.g. 50" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Navigator.webdriver<br>
-                        <select id="webdriver" style="width:100%;padding:10px;margin-top:4px;">
-                            <option value="false">false</option>
-                            <option value="true">true</option>
-                        </select>
-                    </label><br><br>
-                    <label>AnimationFrame jitter<br>
-                        <input type="number" id="raf-jitter" placeholder="e.g. 5" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Canvas fingerprint<br>
-                        <input type="text" id="canvas-fp" placeholder="custom" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>WebRTC IP spoof<br>
-                        <input type="text" id="webrtc-ip" placeholder="192.168.1.1" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Discord nonce timing<br>
-                        <input type="number" id="discord-nonce" placeholder="e.g. 123456" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Keydown timing<br>
-                        <input type="number" id="keydown-timing" placeholder="e.g. 120" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Mouse movement<br>
-                        <input type="text" id="mouse-move" placeholder="pattern" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Scroll timing<br>
-                        <input type="number" id="scroll-timing" placeholder="e.g. 200" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Notification.permission<br>
-                        <select id="notif-perm" style="width:100%;padding:10px;margin-top:4px;">
-                            <option value="granted">granted</option>
-                            <option value="denied">denied</option>
-                            <option value="default">default</option>
-                        </select>
-                    </label><br><br>
-                    <label>screen.availWidth/Height<br>
-                        <input type="text" id="avail-screen" placeholder="1920x1040" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>WebSocket spoof<br>
-                        <input type="text" id="ws-spoof" placeholder="payload" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Fetch/XHR spoof<br>
-                        <input type="text" id="fetch-spoof" placeholder="headers" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Fonts spoof<br>
-                        <input type="text" id="fonts-spoof" placeholder="Arial,Roboto" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>LocalStorage spoof<br>
-                        <input type="text" id="localstorage-spoof" placeholder="key:value" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Device orientation<br>
-                        <input type="text" id="device-orientation" placeholder="alpha,beta,gamma" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Touch pressure<br>
-                        <input type="number" id="touch-pressure" placeholder="1" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>MediaCapabilities<br>
-                        <input type="text" id="media-cap" placeholder="codec" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>Gamepad spoof<br>
-                        <input type="text" id="gamepad-spoof" placeholder="Xbox" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label>WebAssembly env<br>
-                        <input type="text" id="wasm-env" placeholder="x86_64" style="width:100%;padding:10px;margin-top:4px;">
-                    </label><br><br>
-                    <label style="display:flex;align-items:center;gap:10px;">
-                        <div class="toggle-switch" id="advanced-enable"></div>
-                        Enable advanced spoof
-                    </label>
-                </form>
-                <div id="advanced-status" style="margin-top:16px;min-height:1.2em;color:#a5b4fc"></div>
-                <button id="advanced-clear-btn" class="control-button" style="margin-top:16px;width:100%;">Reset</button>
             </div>
         </section>
     </main>
