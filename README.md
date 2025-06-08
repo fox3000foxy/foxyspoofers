@@ -1,9 +1,7 @@
 # 🦊 FoxySpoofers
 
 > **A modern Chrome extension to create a virtual camera, spoof geolocation, manage a local proxy, and change your User-Agent directly in your browser.**
-
-![image](https://github.com/user-attachments/assets/c8fef2b6-440e-46e9-b302-886d2fadc69c)
-
+![image](https://github.com/user-attachments/assets/ea6971f5-4324-463e-8861-d2b43198383d)
 ---
 
 ## 🚨 What's New
