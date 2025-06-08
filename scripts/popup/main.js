@@ -64,6 +64,39 @@ fetch(chrome.runtime.getURL('popup/popup.css'))
         document.getElementById('gamepad-spoof').placeholder = spoofAttrs.get('gamepadSpoof');
         document.getElementById('wasm-env').placeholder = spoofAttrs.get('wasmEnv');
 
+
+        let userAgents = [];
+        fetch(chrome.runtime.getURL('data/user-agents.json'))
+        .then(uaResponse => uaResponse.json())
+        .then(data => {
+            userAgents = data;
+            updateUaList('');
+        });
+
+        const uaInput = document.getElementById('ua-string');
+        const uaSelect = document.getElementById('ua-list');
+
+        function updateUaList(filter) {
+            uaSelect.innerHTML = '';
+            userAgents
+            .filter(ua => ua.toLowerCase().includes(filter.toLowerCase()))
+            .map(ua => ua.trim())
+            .map(ua => ua.replace(/^\s+|\s+$/g, '')) // Trim spaces
+            .slice(0, 100)
+            .forEach(ua => {
+                const option = document.createElement('option');
+                option.value = ua;
+                option.textContent = ua;
+                uaSelect.appendChild(option);
+            });
+        }
+
+        uaInput.addEventListener('input', (e) => {
+            setTimeout(() => {
+                updateUaList(e.target.value);
+            }, 300);
+        });
+
         Preloader.hide();
         new VirtualCameraApp();
     });
