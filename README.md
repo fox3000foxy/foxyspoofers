@@ -7,6 +7,11 @@
 ---
 
 ## 🚨 What's New
+### v1.0.4
+- Unified container styles for a more polished and consistent appearance
+- Updated several labels for improved clarity and usability
+- Automatic aspect ratio adjustment when switching videos
+
 ### v1.0.3
 - Added Leaflet map functionality with geocoding support in main.js
 - Introduced NavSpoofers class to handle navigation attribute spoofing
