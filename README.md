@@ -44,9 +44,11 @@
 - **Virtual Camera:** Replace your webcam with any video on supported sites.
 - **Popup Controls:** Play, pause, seek, and manage video directly from the extension.
 - **Per-Domain Video Activation:** Only videos are per-domain; all other spoofers are global.
-- **Custom Geolocation:** Spoof your GPS position for all sites.
+- **Custom Geolocation:** Spoof your GPS position for all sites, now with interactive Leaflet map and geocoding support.
 - **Configurable Proxy:** Apply a local HTTP/HTTPS/SOCKS5 proxy globally.
 - **User-Agent Spoofer:** Change your browser's User-Agent globally.
+- **Navigation Attribute Spoofing:** Spoof navigator properties like userAgent, language, and screen resolution.
+- **Dynamic Settings:** Fetch and update spoofing settings from chrome.storage or meta tags in real time.
 - **No External Servers:** All processing and storage is local to your browser.
 
 ---
