@@ -21,6 +21,17 @@ class Preloader {
         });
         const style = document.createElement('style');
         style.textContent = `
+
+        * {
+            overflow: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE 10+ */
+        }
+        *::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
         #preloader .preloader-spinner {
             width: 56px;
             height: 56px;
