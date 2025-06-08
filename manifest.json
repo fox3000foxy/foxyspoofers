@@ -28,6 +28,7 @@
       "js": [
         "scripts/popup/preloader.js",
         "scripts/popup/virtual-camera-db.js",
+        "scripts/popup/spoof-attributes.js",
         "scripts/popup/toast.js",
         "scripts/popup/video-state-manager.js",
         "scripts/popup/video-storage.js",

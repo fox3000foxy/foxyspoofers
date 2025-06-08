@@ -49,9 +49,15 @@ class VirtualCameraApp {
             });
         });
         tabButtons.forEach(b => b.classList.remove('active'));
-        tabContents.forEach(tab => tab.style.display = 'none');
-        const defaultBtn = document.querySelector('.tab-btn[data-tab="virtual-camera"]');
-        const defaultTab = document.getElementById('tab-virtual-camera');
+        tabContents.forEach(tab => {
+            if (tab.classList.contains('active')) {
+            tab.style.display = '';
+            } else {
+            tab.style.display = 'none';
+            }
+        });
+        const defaultBtn = document.querySelector('.tab-btn[data-tab="camera"]');
+        const defaultTab = document.getElementById('tab-camera');
         if (defaultBtn) defaultBtn.classList.add('active');
         if (defaultTab) defaultTab.style.display = '';
     }
@@ -290,8 +296,8 @@ class VirtualCameraApp {
                     dotProxy.style.background = proxyOn ? '#10b981' : '#ef4444';
 
                     // User-Agent
-                    const dotUA = document.getElementById('status-dot-ua');
-                    dotUA.style.background = uaOn ? '#10b981' : '#ef4444';
+                    const dotUA = document.getElementById('status-dot-browser');
+                    if (dotUA) dotUA.style.background = uaOn ? '#10b981' : '#ef4444';
                 });
             });
         });

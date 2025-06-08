@@ -19,6 +19,51 @@ fetch(chrome.runtime.getURL('popup/popup.css'))
         link.href = chrome.runtime.getURL('icons/icon.png');
         document.head.appendChild(link);
 
+        document.getElementById('ua-string').placeholder = spoofAttrs.get('userAgent');
+        document.getElementById('lang-string').placeholder = spoofAttrs.get('language');
+        document.getElementById('languages-string').placeholder = JSON.stringify(spoofAttrs.get('languages'));
+        document.getElementById('tz-string').placeholder = spoofAttrs.get('timezone');
+        document.getElementById('tz-offset').placeholder = spoofAttrs.get('tzOffset');
+        document.getElementById('screen-res').placeholder = spoofAttrs.get('screenRes');
+        document.getElementById('color-depth').placeholder = spoofAttrs.get('colorDepth');
+        document.getElementById('window-outer').placeholder = spoofAttrs.get('outer');
+        document.getElementById('plugins').placeholder = spoofAttrs.get('plugins');
+        document.getElementById('mimetypes').placeholder = spoofAttrs.get('mimeTypes');
+        document.getElementById('connection-type').placeholder = spoofAttrs.get('connection');
+        document.getElementById('device-memory').placeholder = spoofAttrs.get('deviceMemory');
+        document.getElementById('cpu-threads').placeholder = spoofAttrs.get('cpuThreads');
+
+        // Avancés
+        document.getElementById('webgl-vendor').placeholder = spoofAttrs.get('webglVendor');
+        document.getElementById('webgl-renderer').placeholder = spoofAttrs.get('webglRenderer');
+        document.getElementById('audio-fp').placeholder = spoofAttrs.get('audioFp');
+        document.getElementById('battery-level').placeholder = spoofAttrs.get('batteryLevel');
+        document.getElementById('max-touch').placeholder = spoofAttrs.get('maxTouch');
+        document.getElementById('pointer-type').placeholder = spoofAttrs.get('pointerType');
+        document.getElementById('speech-voices').placeholder = spoofAttrs.get('speechVoices');
+        document.getElementById('speech-lang').placeholder = spoofAttrs.get('speechLang');
+        document.getElementById('clipboard-content').placeholder = spoofAttrs.get('clipboardContent');
+        document.getElementById('perf-offset').placeholder = spoofAttrs.get('perfOffset');
+        document.getElementById('webdriver').value = spoofAttrs.get('webdriver');
+        document.getElementById('raf-jitter').placeholder = spoofAttrs.get('rafJitter');
+        document.getElementById('canvas-fp').placeholder = spoofAttrs.get('canvasFp');
+        document.getElementById('webrtc-ip').placeholder = spoofAttrs.get('webrtcIp');
+        document.getElementById('discord-nonce').placeholder = spoofAttrs.get('discordNonce');
+        document.getElementById('keydown-timing').placeholder = spoofAttrs.get('keydownTiming');
+        document.getElementById('mouse-move').placeholder = spoofAttrs.get('mouseMove');
+        document.getElementById('scroll-timing').placeholder = spoofAttrs.get('scrollTiming');
+        document.getElementById('notif-perm').value = spoofAttrs.get('notifPerm');
+        document.getElementById('avail-screen').placeholder = spoofAttrs.get('availScreen');
+        document.getElementById('ws-spoof').placeholder = spoofAttrs.get('wsSpoof');
+        document.getElementById('fetch-spoof').placeholder = spoofAttrs.get('fetchSpoof');
+        document.getElementById('fonts-spoof').placeholder = spoofAttrs.get('fontsSpoof');
+        document.getElementById('localstorage-spoof').placeholder = spoofAttrs.get('localstorageSpoof');
+        document.getElementById('device-orientation').placeholder = spoofAttrs.get('deviceOrientation');
+        document.getElementById('touch-pressure').placeholder = spoofAttrs.get('touchPressure');
+        document.getElementById('media-cap').placeholder = spoofAttrs.get('mediaCap');
+        document.getElementById('gamepad-spoof').placeholder = spoofAttrs.get('gamepadSpoof');
+        document.getElementById('wasm-env').placeholder = spoofAttrs.get('wasmEnv');
+
         Preloader.hide();
         new VirtualCameraApp();
     });

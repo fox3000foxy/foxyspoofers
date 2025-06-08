@@ -7,7 +7,7 @@ export class GeoSpoofSettings {
                 });
             });
         }
-        const geoTag = document.querySelector('meta[name="geo.position"]');
+        const geoTag = document.querySelector('meta[name="foxyspoofers-geo-position"]');
         if (geoTag) {
             try {
                 const json = geoTag.getAttribute('value') || geoTag.content;
@@ -15,7 +15,7 @@ export class GeoSpoofSettings {
                     return JSON.parse(json);
                 }
             } catch (e) {
-                console.log('%c[Error]%c Failed to parse geo.position JSON:', 'color: red; font-weight: bold;', '', e);
+                console.log('%c[Error]%c Failed to parse foxyspoofers-geo-position JSON:', 'color: red; font-weight: bold;', '', e);
             }
         }
         return null;

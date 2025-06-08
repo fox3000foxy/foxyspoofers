@@ -91,32 +91,79 @@ class SettingsUI {
             });
         }
     }
-    // User-Agent
+    // User-Agent et paramètres navigateur
     initUA() {
-        const uaForm = document.getElementById('ua-form');
+        const uaForm = document.getElementById('browser-form');
         const uaString = document.getElementById('ua-string');
-        const uaEnable = document.getElementById('ua-enable');
-        const uaStatus = document.getElementById('ua-status');
-        const uaClearBtn = document.getElementById('ua-clear-btn');
+        const langString = document.getElementById('lang-string');
+        const languagesString = document.getElementById('languages-string');
+        const tzString = document.getElementById('tz-string');
+        const tzOffset = document.getElementById('tz-offset');
+        const screenRes = document.getElementById('screen-res');
+        const colorDepth = document.getElementById('color-depth');
+        const windowOuter = document.getElementById('window-outer');
+        const plugins = document.getElementById('plugins');
+        const mimeTypes = document.getElementById('mimetypes');
+        const connectionType = document.getElementById('connection-type');
+        const deviceMemory = document.getElementById('device-memory');
+        const cpuThreads = document.getElementById('cpu-threads');
+        const uaEnable = document.getElementById('browser-enable');
+        const uaStatus = document.getElementById('browser-status');
+        const uaClearBtn = document.getElementById('browser-clear-btn');
+
+        // Charger les valeurs sauvegardées
         chrome.storage.local.get('uaSettings', (data) => {
             const val = data.uaSettings || {};
             uaString.value = val.ua || '';
-            uaEnable.classList.toggle('active', !!val.enabled);
+            langString.value = val.language || '';
+            languagesString.value = val.languages || '';
+            tzString.value = val.timezone || '';
+            tzOffset.value = val.tzOffset || '';
+            screenRes.value = val.screenRes || '';
+            colorDepth.value = val.colorDepth || '';
+            windowOuter.value = val.outer || '';
+            plugins.value = val.plugins || '';
+            mimeTypes.value = val.mimeTypes || '';
+            connectionType.value = val.connection || '';
+            deviceMemory.value = val.deviceMemory || '';
+            cpuThreads.value = val.cpuThreads || '';
+            if (uaEnable) uaEnable.classList.toggle('active', !!val.enabled);
         });
+
         function saveUASettings() {
             try {
                 chrome.storage.local.set({
-                    uaSettings: { ua: uaString.value, enabled: uaEnable.classList.contains('active') }
+                    uaSettings: {
+                        ua: uaString.value || uaString.placeholder,
+                        language: langString.value || langString.placeholder,
+                        languages: languagesString.value || languagesString.placeholder,
+                        timezone: tzString.value || tzString.placeholder,
+                        tzOffset: tzOffset.value || tzOffset.placeholder,
+                        screenRes: screenRes.value || screenRes.placeholder,
+                        colorDepth: colorDepth.value || colorDepth.placeholder,
+                        outer: windowOuter.value || windowOuter.placeholder,
+                        plugins: plugins.value || plugins.placeholder,
+                        mimeTypes: mimeTypes.value || mimeTypes.placeholder,
+                        connection: connectionType.value || connectionType.placeholder,
+                        deviceMemory: deviceMemory.value || deviceMemory.placeholder,
+                        cpuThreads: cpuThreads.value || cpuThreads.placeholder,
+                        enabled: uaEnable && uaEnable.classList.contains('active')
+                    }
                 }, () => {
-                    uaStatus.textContent = "User-Agent settings saved!";
-                    setTimeout(() => uaStatus.textContent = "", 2000);
+                    if (uaStatus) {
+                        uaStatus.textContent = "Browser settings saved!";
+                        setTimeout(() => uaStatus.textContent = "", 2000);
+                    }
                     if (this.refreshStatus) this.refreshStatus();
                 });
             } catch {}
         }
+
         if (uaForm) {
-            uaString.addEventListener('input', saveUASettings.bind(this));
-            uaEnable.addEventListener('click', () => {
+            [uaString, langString, languagesString, tzString, tzOffset, screenRes, colorDepth, windowOuter, plugins, mimeTypes, connectionType, deviceMemory, cpuThreads].forEach(el => {
+                if (el) el.addEventListener('input', saveUASettings.bind(this));
+            });
+            if (uaEnable) uaEnable.addEventListener('click', () => {
                 uaEnable.classList.toggle('active');
                 saveUASettings.call(this);
             });
@@ -124,10 +171,14 @@ class SettingsUI {
         if (uaClearBtn) {
             uaClearBtn.addEventListener('click', () => {
                 chrome.storage.local.remove('uaSettings', () => {
-                    uaString.value = '';
-                    uaEnable.classList.remove('active');
-                    uaStatus.textContent = "User-Agent cleared!";
-                    setTimeout(() => uaStatus.textContent = "", 2000);
+                    [uaString, langString, languagesString, tzString, tzOffset, screenRes, colorDepth, windowOuter, plugins, mimeTypes, connectionType, deviceMemory, cpuThreads].forEach(el => {
+                        if (el) el.value = '';
+                    });
+                    if (uaEnable) uaEnable.classList.remove('active');
+                    if (uaStatus) {
+                        uaStatus.textContent = "Browser settings reset!";
+                        setTimeout(() => uaStatus.textContent = "", 2000);
+                    }
                     if (this.refreshStatus) this.refreshStatus();
                 });
             });

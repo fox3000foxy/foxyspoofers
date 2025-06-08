@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxySpoofers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="zoom: 0.9; font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #1e293b; color: #e2e8f0;">
+    <header class="header">
+        <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="{extensionPath}/icons/icon.png" alt="FoxySpoofers Logo" style="width: 32px; height: 32px;">
+            <div class="logo" style="font-size: 1.3em; font-weight: 600;">
+                FoxySpoofers
+                <span style="color:gray; font-size:0.85em; margin-left:6px;">by fox3000foxy</span>
+            </div>
+            </div>
+        </div>
+        <div class="status-indicator-multi">
+            <div class="status-item">
+                <div class="status-dot" id="status-dot-camera"></div>
+                <span id="status-text-camera">Virtual Camera</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" id="status-dot-geo"></div>
+                <span id="status-text-geo">Geolocation</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" id="status-dot-proxy"></div>
+                <span id="status-text-proxy">Proxy</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" id="status-dot-ua"></div>
+                <span id="status-text-ua">User-Agent</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barre d'onglets -->
+    <nav class="tabs">
+        <button class="tab-btn active" data-tab="virtual-camera">Virtual Camera</button>
+        <!-- <button class="tab-btn" data-tab="soundboard">Soundboard</button> -->
+        <button class="tab-btn" data-tab="geolocation">Geolocation</button>
+        <button class="tab-btn" data-tab="proxy">Proxy</button>
+        <button class="tab-btn" data-tab="useragent">User-Agent</button> <!-- AJOUT -->
+    </nav>
+
+    <main>
+        <!-- Onglet Virtual Camera -->
+        <section class="tab-content" id="tab-virtual-camera">
+            <section class="video-section fade-in">
+                <span style="color: gray; font-size: 0.8em;">This instance only applies to {domain}</span>
+                <div class="video-wrapper">
+                    <video id="video" controls muted loop playsinline></video>
+                    <div class="video-overlay" id="video-overlay">
+                        <div class="video-placeholder">🎬</div>
+                        <div class="video-placeholder-text">No video loaded</div>
+                        <div class="video-placeholder-hint">Click "Load a video" to get started</div>
+                    </div>
+                </div>
+                <br>
+                <div class="controls-grid">
+                    <button class="control-button" id="toggle-button">
+                        <span>▶️</span>
+                        Enable camera
+                    </button>
+                    <button class="control-button" id="video-upload-btn">
+                        <span>📁</span>
+                        Load a video
+                    </button>
+                    <input type="file" class="file-input" id="video-upload" accept="video/*">
+                    <button class="control-button secondary" id="clear-db-btn">
+                        <span>🗑️</span>
+                        Clear all
+                    </button>
+                </div>
+            </section>
+            <section class="settings-section fade-in" style="display: none;">
+                <div class="setting-row">
+                    <div class="setting-label">Loop playback</div>
+                    <div class="toggle-switch" id="loop-toggle"></div>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">Autoplay</div>
+                    <div class="toggle-switch" id="autoplay-toggle"></div>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">Mute</div>
+                    <div class="toggle-switch active" id="mute-toggle"></div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Onglet Soundboard -->
+        <section class="tab-content" id="tab-soundboard" style="display:none;">
+            <div style="padding: 40px; text-align: center;">
+                <h2>Soundboard</h2>
+                <p>Work in progress...</p>
+            </div>
+        </section>
+
+        <!-- Onglet Geolocation -->
+        <section class="tab-content" id="tab-geolocation" style="display:none;">
+            <div class="geo-section">
+                <h2>Geolocation Spoof</h2>
+                <form id="geo-form">
+                    <label>
+                        Latitude<br>
+                        <input type="number" step="any" id="geo-lat" required>
+                    </label><br><br>
+                    <label>
+                        Longitude<br>
+                        <input type="number" step="any" id="geo-lon" required>
+                    </label><br><br>
+                    <label style="display:flex;align-items:center;gap:10px;">
+                        <div class="toggle-switch" id="geo-enable"></div>
+                        Enable spoofed geolocation
+                    </label>
+                </form>
+                <div id="geo-status"></div>
+            </div>
+        </section>
+
+        <!-- Onglet Proxy -->
+        <section class="tab-content" id="tab-proxy" style="display:none;">
+            <div class="proxy-section" style="padding: 32px; max-width: 500px; margin: 0 auto;">
+                <h2>Proxy Settings</h2>
+                <form id="proxy-form" style="margin-top: 24px;">
+                    <label>
+                        Proxy Type<br>
+                        <select id="proxy-type" style="width:100%;padding:10px;margin-top:4px;">
+                            <option value="http">HTTP</option>
+                            <option value="https">HTTPS</option>
+                            <option value="socks5">SOCKS5</option>
+                        </select>
+                    </label><br><br>
+                    <label>
+                        Proxy Host<br>
+                        <input type="text" id="proxy-host" placeholder="e.g. 127.0.0.1" style="width:100%;padding:10px;margin-top:4px;" required>
+                    </label><br><br>
+                    <label>
+                        Proxy Port<br>
+                        <input type="number" id="proxy-port" placeholder="e.g. 8080" style="width:100%;padding:10px;margin-top:4px;" required>
+                    </label><br><br>
+                    <label style="display:flex;align-items:center;gap:10px;">
+                        <div class="toggle-switch" id="proxy-enable"></div>
+                        Enable proxy for this domain
+                    </label>
+                </form>
+                <div id="proxy-status" style="margin-top:16px;min-height:1.2em;color:#a5b4fc"></div>
+                <button id="proxy-clear-btn" class="control-button" style="margin-top:16px;width:100%;">Clear Proxy Settings</button>
+            </div>
+        </section>
+
+        <!-- Onglet User-Agent Spoof -->
+        <section class="tab-content" id="tab-useragent" style="display:none;">
+            <div class="useragent-section" style="padding:32px;max-width:500px;margin:0 auto;">
+                <h2>User-Agent Spoof</h2>
+                <form id="ua-form" style="margin-top:24px;">
+                    <label>
+                        User-Agent String<br>
+                        <input list="ua-list" type="text" id="ua-string" placeholder="e.g. Mozilla/5.0 ..." style="width:100%;padding:10px;margin-top:4px;" required>
+                        <datalist id="ua-list">
+                            <option value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36">
+                            <option value="Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15">
+                            <option value="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0">
+                            <option value="Mozilla/5.0 (Linux; Android 14; Pixel 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36">
+                            <option value="Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1">
+                            <option value="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36">
+                            <option value="Mozilla/5.0 (iPad; CPU OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1">
+                            <option value="Mozilla/5.0 (Linux; Android 14; SM-S928B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36">
+                            <option value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36">
+                            <option value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edg/124.0.2478.80">
+                            <option value="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36">
+                            <option value="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0">
+                            <option value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15">
+                            <option value="Mozilla/5.0 (Linux; Android 13; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.65 Mobile Safari/537.36">
+                            <option value="Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1">
+                            <option value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0">
+                            <option value="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.70 Safari/537.36">
+                            <option value="Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36">
+                            <option value="Mozilla/5.0 (Linux; Android 12; SM-A528B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36">
+                            <option value="Mozilla/5.0 (iPad; CPU OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Mobile/15E148 Safari/604.1">
+                        </datalist>
+                    </label><br><br>
+                    <label style="display:flex;align-items:center;gap:10px;">
+                        <div class="toggle-switch" id="ua-enable"></div>
+                        Enable User-Agent spoofing for this domain
+                    </label>
+                </form>
+                <div id="ua-status" style="margin-top:16px;min-height:1.2em;color:#a5b4fc"></div>
+                <button id="ua-clear-btn" class="control-button" style="margin-top:16px;width:100%;">Clear User-Agent</button>
+            </div>
+        </section>
+    </main>
+    <script>
+    // Simple tab logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+            document.getElementById('tab-' + this.dataset.tab).style.display = '';
+        });
+    });
+    </script>
+</body>
+</html>
