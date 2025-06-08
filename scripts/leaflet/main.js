@@ -1,4 +1,3 @@
-console.log("Leaflet et geocoder chargés");
 function load() {
     if(!location.href.includes('foxyspoofers')) {
         console.log('[Leaflet] Interface détectée, injection confirmée.');
