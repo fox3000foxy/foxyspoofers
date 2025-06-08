@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "FoxySpoofers",
   "version": "1.0.4",
-  "description": "A modern Chrome extension to create a virtual camera, spoof geolocation, spoof user agent, and manage a local proxy directly in your browser.",
+  "description": "Chrome extension: virtual camera, spoof geolocation & user agent, and manage a local proxy directly in your browser.",
   "permissions": [
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
