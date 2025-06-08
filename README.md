@@ -74,6 +74,9 @@
 4. Use the video controls to play, pause, or seek.
 5. The extension will remember your position and settings.
 
+Bonus. You can also go to a website ant then add `/foxyspoofers`, it works as well!
+![image](https://github.com/user-attachments/assets/ff4fcac6-1da8-4968-8485-cf36a8d5bbec)
+
 ---
 
 ## 👤 Authors
