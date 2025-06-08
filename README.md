@@ -7,6 +7,14 @@
 ---
 
 ## 🚨 What's New
+### v1.0.3
+- Added Leaflet map functionality with geocoding support in main.js
+- Introduced NavSpoofers class to handle navigation attribute spoofing
+- Created NavSpoofSettings class for fetching user agent and other settings
+- Developed SpoofAttributes class to manage various spoofable attributes
+- Integrated settings fetching from chrome.storage or meta tags
+- Enhanced navigator properties such as userAgent, language, and screen resolution
+- Implemented event listeners for dynamic updates in navigation spoofing
 
 ### v1.0.2
 - Complete UI redesign for a modern, consistent look.
