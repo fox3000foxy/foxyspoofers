@@ -1,31 +1,23 @@
 Preloader.show();
-
-const cssPromise = fetch(chrome.runtime.getURL('popup/popup.css')).then(r => r.text());
-const htmlPromise = fetch(chrome.runtime.getURL('popup/popup.html')).then(r => r.text());
-
-Promise.race([cssPromise, htmlPromise]).then(() => {
-    // L'un des deux est prêt, mais on attend les deux pour continuer
-    Promise.all([cssPromise, htmlPromise]).then(([css, html]) => {
+fetch(chrome.runtime.getURL('popup/popup.css'))
+.then(cssResponse => cssResponse.text())
+.then(css => {
+    fetch(chrome.runtime.getURL('popup/popup.html'))
+    .then(response => response.text())
+    .then(html => {
         let processedHtml = html.replace('{domain}', window.location.hostname);
         processedHtml = processedHtml.replaceAll('{extensionPath}', chrome.runtime.getURL('background.js').split('/').slice(0, -1).join('/'));
         document.documentElement.innerHTML = processedHtml;
-
-        // Inject CSS first
+        
         const style = document.createElement('style');
         style.textContent = css;
+        document.head.appendChild(style);
 
-        // Inject favicon
         const link = document.createElement('link');
         link.rel = 'icon';
         link.type = 'image/png';
         link.href = chrome.runtime.getURL('icons/icon.png');
-
-        // Inject title
-        const title = document.querySelector('title') || document.createElement('title');
-        title.textContent = 'Virtual Camera - FoxySpoofers';
-        document.head.appendChild(style);
         document.head.appendChild(link);
-        document.head.appendChild(title);
 
         document.getElementById('ua-string').placeholder = spoofAttrs.get('userAgent');
         document.getElementById('lang-string').placeholder = spoofAttrs.get('language');
