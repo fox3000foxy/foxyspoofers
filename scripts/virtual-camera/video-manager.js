@@ -96,6 +96,15 @@ export class VirtualVideoManager {
     captureCanvasStream(canvas, video) {
         const ctx = canvas.getContext('2d');
         const draw = () => {
+            // Met à jour l'aspect ratio à chaque frame
+            const aspectRatio = video.videoWidth / video.videoHeight;
+            if (aspectRatio >= 1) {
+                canvas.width = CONFIG.CANVAS_WIDTH;
+                canvas.height = Math.round(canvas.width / aspectRatio);
+            } else {
+                canvas.height = CONFIG.CANVAS_HEIGHT;
+                canvas.width = Math.round(canvas.height * aspectRatio);
+            }
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             if (video.requestVideoFrameCallback) {
                 video.requestVideoFrameCallback(draw);
