@@ -45,7 +45,7 @@ class VirtualCameraApp {
                 tabContents.forEach(tab => tab.style.display = 'none');
                 const tabId = 'tab-' + this.dataset.tab;
                 const tabToShow = document.getElementById(tabId);
-                if (tabToShow) tabToShow.style.display = '';
+                if (tabToShow) tabToShow.style.display = 'flex';
             });
         });
         tabButtons.forEach(b => b.classList.remove('active'));
