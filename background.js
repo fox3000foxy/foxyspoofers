@@ -1,5 +1,5 @@
-import { ProxyManager } from './scripts/proxy/proxy-manager.js';
-import { UserAgentManager } from './scripts/user-agent/user-agent-manager.js';
+import { ProxyManager } from './scripts/background/proxy-manager.js';
+import { UserAgentManager } from './scripts/background/user-agent-manager.js';
 
 class ExtensionController {
     static initialize() {
