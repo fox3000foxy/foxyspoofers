@@ -10,11 +10,12 @@ function load() {
     console.log('[Leaflet] Chargement de la carte Leaflet');
     const latInput = document.getElementById('geo-lat');
     const lonInput = document.getElementById('geo-lon');
-    const lat = parseFloat(latInput.value) || 48.858844;
-    const lon = parseFloat(lonInput.value) || 2.294351;
+    const lat = latInput ? parseFloat(latInput?.value) || 48.858844 : 48.858844;
+    const lon = lonInput ? parseFloat(lonInput?.value) || 2.294351 : 2.294351;
     console.log(`Initial position: lat=${lat}, lon=${lon}`);
 
     // Init map
+    if(!document.getElementById('geo-map')) return;
     const map = L.map('geo-map').setView([lat, lon], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap'
